@@ -1,10 +1,12 @@
 {
   "name": "@bigidea/slack",
   "version": "0.0.0",
-  "license": "MIT",
   "scripts": {
     "lint": "eslint *.ts*",
     "build": "tsup src/index.ts --dts"
+  },
+  "typedoc": {
+    "entryPoint": "./src/index.ts"
   },
   "dependencies": {
     "@bigidea/integration": "*"
