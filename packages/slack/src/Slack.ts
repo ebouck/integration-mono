@@ -5,7 +5,7 @@ import {
   HttpProxyResponse,
   defineAuth,
 } from "@bigidea/integration";
-import postMessage from "./chat/postMessage";
+import postMessage, { PostMessageOptions } from "./chat/postMessage";
 import section from "./elements/blocks/section";
 import plainText from "./elements/objects/plainText";
 import markdownText from "./elements/objects/markdownText";
@@ -18,11 +18,26 @@ import image from "./elements/blocks/image";
 import video from "./elements/blocks/video";
 import confirmationDialog from "./elements/objects/confirmationDialog";
 
+/**
+ * The Slack connector docs
+ */
 export class Slack extends RestConnector {
-  static defineAuth({ name }: { name: string }) {
+  /**
+   * Define a slack auth
+   *
+   * @category Auth
+   */
+  static defineAuth(options: { name: string }) {
+    const { name } = options;
+
     return defineAuth({ name, app: "slack" });
   }
 
+  /**
+   * Create a new slack connector
+   *
+   * @param options
+   */
   constructor(options: AuthConnectorOptions) {
     super({ ...options, baseUrl: "https://slack.com/api/" });
   }
@@ -54,7 +69,18 @@ export class Slack extends RestConnector {
     return response;
   }
 
-  postMessage = postMessage(this);
+  /**
+   * Sends a message to a channel.
+   *
+   * [Original documentation](https://api.slack.com/methods/chat.postMessage)
+   *
+   * @category Chat
+   *
+   * @param options
+   */
+  async postMessage(options: PostMessageOptions): Promise<HttpProxyResponse> {
+    return postMessage(this)(options);
+  }
 
   static blocks = {
     actions: actions,

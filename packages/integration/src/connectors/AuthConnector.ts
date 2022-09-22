@@ -13,6 +13,11 @@ export interface AuthConnectorOptions extends BaseConnectorOptions {
   auth: AuthData;
 }
 
+/**
+ * Docs for AuthConnector
+ *
+ * @public
+ */
 export class AuthConnector extends BaseConnector {
   _auth: AuthData;
 

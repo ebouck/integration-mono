@@ -37,3 +37,7 @@ yarn-error.log*
 
 # Packages
 packages/*/dist
+
+# API Extractor
+tsdoc-metadata.json
+temp

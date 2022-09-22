@@ -11,9 +11,14 @@
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint",
     "test": "turbo run test",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "docs:extract": "api-extractor run --local --verbose",
+    "docs:document": "api-documenter markdown --input-folder temp --output-folder apps/docs/docs/api",
+    "docs:generate": "npm run build && npm run docs:extract && npm run docs:document"
   },
   "devDependencies": {
+    "@microsoft/api-documenter": "^7.19.14",
+    "@microsoft/api-extractor": "^7.31.2",
     "eslint-config-custom": "*",
     "prettier": "latest",
     "turbo": "latest"
@@ -21,6 +26,5 @@
   "engines": {
     "node": ">=14.0.0"
   },
-  "dependencies": {},
   "packageManager": "npm@8.15.0"
 }

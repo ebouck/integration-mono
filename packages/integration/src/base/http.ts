@@ -14,9 +14,21 @@ export interface HttpProxyRequestOptions {
 }
 
 export type HttpProxyResponse = {
+  /**
+   * The http status of the proxied response
+   */
   status: number;
+  /**
+   * The http status test of the proxied response
+   */
   statusText: string;
+  /**
+   * The response headers of the proxied response
+   */
   headers: any;
+  /**
+   * The http body of the proxied response
+   */
   data: any;
 };
 

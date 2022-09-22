@@ -1,3 +1,9 @@
+/**
+ * This is the place to comment on the integration package
+ *
+ * @packageDocumentation
+ */
+
 import { defineAuth, getAuthData, AuthData } from "./base/auth";
 import {
   HttpProxyRequestOptions,

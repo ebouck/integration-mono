@@ -21,24 +21,24 @@ const config = {
     defaultLocale: "en",
     locales: ["en"],
   },
-
-  plugins: [
-    [
-      "docusaurus-plugin-typedoc",
-
-      // Plugin / TypeDoc options
-      {
-        entryPoints: ["../../packages/integration", "../../packages/slack"],
-        entryPointStrategy: "packages",
-        tsconfig: "./tsconfig.json",
-        watch: false,
-        preserveWatchOutput: true,
-        cleanOutputDir: true,
-        plugin: "./theme/index.js",
-        theme: "our-markdown",
-      },
-    ],
-  ],
+  // plugins: [
+  //   [
+  //     "docusaurus-plugin-typedoc",
+  //
+  //     // Plugin / TypeDoc options
+  //     {
+  //       entryPoints: ["../../packages/integration", "../../packages/slack"],
+  //       entryPointStrategy: "packages",
+  //       tsconfig: "./tsconfig.json",
+  //       watch: false,
+  //       excludeNotDocumented: false,
+  //       preserveWatchOutput: true,
+  //       cleanOutputDir: true,
+  //       plugin: "./theme/index.js",
+  //       theme: "our-markdown",
+  //     },
+  //   ],
+  // ],
   presets: [
     [
       "classic",

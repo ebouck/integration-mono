@@ -2,6 +2,9 @@ import { deCamelize } from "@bigidea/integration";
 import { Slack } from "../Slack";
 import { Block } from "../elements/blocks";
 
+/**
+ * Options for postMessage
+ */
 export interface PostMessageOptions {
   /**
    * Channel, private group, or IM channel to send message to. Can be an encoded ID, or a name.

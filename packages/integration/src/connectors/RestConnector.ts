@@ -33,15 +33,14 @@ export class RestConnector extends AuthConnector {
     };
   }
 
-  async request({
-    method,
-    url,
-    params,
-    headers,
-    data,
-  }: HttpProxyRequestOptions): Promise<HttpProxyResponse> {
+  /**
+   * Make a proxied http request
+   */
+  async request(options: HttpProxyRequestOptions): Promise<HttpProxyResponse> {
     console.log("in RestConnector.request");
-    const options = {
+    const { method, url, params, headers, data } = options;
+
+    const proxyOptions = {
       method,
       url: this.buildUrl(url, params),
       headers: {
@@ -51,7 +50,7 @@ export class RestConnector extends AuthConnector {
       body: data && JSON.stringify(data),
     };
 
-    const response = await httpRequest(options);
+    const response = await httpRequest(proxyOptions);
 
     return { ...response, data: camelize(response.data) };
   }
