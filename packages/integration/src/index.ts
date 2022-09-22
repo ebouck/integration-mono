@@ -1,8 +1,13 @@
-import { defineTask } from "./base/task";
 import { defineAuth, getAuthData, AuthData } from "./base/auth";
-import { defineVariable, getVariableData, VariableData } from "./base/variable";
+import {
+  HttpProxyRequestOptions,
+  HttpProxyResponse,
+  HttpProxyResponseError,
+} from "./base/http";
 import { defineSecret, SecretData } from "./base/secret";
 import { defineSubscription } from "./base/subscription";
+import { defineTask } from "./base/task";
+import { defineVariable, getVariableData, VariableData } from "./base/variable";
 import { defineWebhook, getWebhookData } from "./base/webhook";
 import {
   BaseConnector,
@@ -27,6 +32,7 @@ import { logs } from "./logging";
 import { handler } from "./handler";
 import toTimestamp from "./util/toTimestamp";
 import { PollingData, WebhookDeliveryData } from "./base/runData";
+import deCamelize from "./util/deCamelize";
 
 export {
   defineTask,
@@ -47,6 +53,8 @@ export {
   logs,
   handler,
   toTimestamp,
+  deCamelize,
+  HttpProxyResponseError,
 };
 
 export type {
@@ -55,6 +63,8 @@ export type {
   SecretData,
   BaseConnectorOptions,
   AuthConnectorOptions,
+  HttpProxyRequestOptions,
+  HttpProxyResponse,
   OauthConnectorProps,
   OauthConfigData,
   RestConnectorOptions,
