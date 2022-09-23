@@ -12,13 +12,11 @@
     "lint": "turbo run lint",
     "test": "turbo run test",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "docs:extract": "api-extractor run --local --verbose",
-    "docs:document": "api-documenter markdown --input-folder temp --output-folder apps/docs/docs/api",
+    "docs:extract": "turbo run docs:extract",
+    "docs:document": "api-documenter markdown --input-folder temp/@bigidea --output-folder apps/docs/docs/api",
     "docs:generate": "npm run build && npm run docs:extract && npm run docs:document"
   },
   "devDependencies": {
-    "@microsoft/api-documenter": "^7.19.14",
-    "@microsoft/api-extractor": "^7.31.2",
     "eslint-config-custom": "*",
     "prettier": "latest",
     "turbo": "latest"

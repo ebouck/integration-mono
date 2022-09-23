@@ -4,7 +4,7 @@
  * @packageDocumentation
  */
 
-import { defineAuth, getAuthData, AuthData } from "./base/auth";
+import { defineAuth, getAuthData, AuthData, AuthProps } from "./base/auth";
 import {
   HttpProxyRequestOptions,
   HttpProxyResponse,
@@ -65,6 +65,7 @@ export {
 
 export type {
   AuthData,
+  AuthProps,
   VariableData,
   SecretData,
   BaseConnectorOptions,

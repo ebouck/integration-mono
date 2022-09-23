@@ -9,6 +9,14 @@
       "dependsOn": ["^test"],
       "outputs": []
     },
+    "docs:extract": {
+      "dependsOn": ["^docs:extract"],
+      "outputs": []
+    },
+    "docs:generate": {
+      "dependsOn": ["^docs:generate"],
+      "outputs": ["temp/**"]
+    },
     "lint": {
       "outputs": []
     },

@@ -3,6 +3,9 @@ import baseRequest from "./baseRequest";
 import { secrets } from "../logging";
 import { deployList } from "./deploy";
 
+/**
+ * @public
+ */
 export interface AuthProps {
   name: string;
   app?: string;
@@ -14,6 +17,9 @@ function validateAuthProps({ name }: AuthProps) {
   invariant(typeof name === "string", "Name must be a string");
 }
 
+/**
+ * @public
+ */
 export function defineAuth(props: AuthProps) {
   validateAuthProps(props);
   deployList.push({ type: "auth", data: props });
@@ -43,16 +49,39 @@ export async function deployAuth(envName: string, props: AuthProps) {
   console.info(`Deployed auth: ${name}`);
 }
 
+/**
+ * @public
+ */
 export type AuthData = {
+  /**
+   * The api key
+   */
+  apiKey: string | null;
   tokenType?: string | null;
   state?: string | null;
+  /**
+   * The oauth2 access token
+   */
   accessToken: string | null;
+  /**
+   * The oauth2 refresh token
+   */
   refreshToken: string | null;
-  apiKey: string | null;
+  /**
+   * Date/time when oauth access token expires
+   */
   expiresAt?: string | null;
+  /**
+   * Data/time when oauth access token was last refreshed
+   */
   refreshedAt?: string | null;
 };
 
+/**
+ * @public
+ *
+ * @param name - the name of the auth
+ */
 export async function getAuthData(name: string): Promise<AuthData> {
   const envName = process.env.ENV_NAME;
   invariant(envName, "Missing ENV_NAME");

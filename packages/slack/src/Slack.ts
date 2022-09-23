@@ -24,8 +24,6 @@ import confirmationDialog from "./elements/objects/confirmationDialog";
 export class Slack extends RestConnector {
   /**
    * Define a slack auth
-   *
-   * @category Auth
    */
   static defineAuth(options: { name: string }) {
     const { name } = options;
@@ -42,6 +40,9 @@ export class Slack extends RestConnector {
     super({ ...options, baseUrl: "https://slack.com/api/" });
   }
 
+  /**
+   * @internal
+   */
   authorizationHeaders(): { [p: string]: string } {
     const { accessToken, apiKey } = this.getAuthData();
 
@@ -53,6 +54,9 @@ export class Slack extends RestConnector {
     };
   }
 
+  /**
+   * @internal
+   */
   async request(options: HttpProxyRequestOptions): Promise<HttpProxyResponse> {
     const response = await super.request(options);
     let data = response.data;
@@ -72,9 +76,31 @@ export class Slack extends RestConnector {
   /**
    * Sends a message to a channel.
    *
-   * [Original documentation](https://api.slack.com/methods/chat.postMessage)
+   * @example Basic hello world as text
    *
-   * @category Chat
+   * ```typescript
+   * slack.postMessage({ channel: "#general", text: "hello world" });
+   * ```
+   *
+   * @example Use blocks to structure display
+   *
+   * This one uses blocks to generate a visually appealing display of a lot of content.
+   *
+   * ```typescript
+   * slack.postMessage({
+   *   channel: "#general",
+   *   blocks: [
+   *     Slack.blocks.section("Title section"),
+   *     Slack.blocks.section({
+   *       fields: [
+   *         Slack.objects.markdownText("*Data 1*\nvalue A"),
+   *         Slack.objects.markdownText("*Data 2*\nvalue B"),
+   *       ]
+   *     }),
+   *   ],
+   *   text: "Use text as a fallback for notifications that can't display blocks",
+   * })
+   * ```
    *
    * @param options
    */
