@@ -4,7 +4,8 @@
   "private": true,
   "workspaces": [
     "apps/*",
-    "packages/*"
+    "packages/*",
+    "packages/@bigidea/*"
   ],
   "scripts": {
     "build": "turbo run build",
@@ -17,6 +18,7 @@
     "docs:generate": "npm run build && npm run docs:extract && npm run docs:document"
   },
   "devDependencies": {
+    "@microsoft/api-documenter": "^7.19.14",
     "eslint-config-custom": "*",
     "prettier": "latest",
     "turbo": "latest"

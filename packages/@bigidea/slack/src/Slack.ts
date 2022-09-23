@@ -74,7 +74,7 @@ export class Slack extends RestConnector {
   }
 
   /**
-   * Sends a message to a channel.
+   * Sends a message to a channel. changed again
    *
    * @example Basic hello world as text
    *

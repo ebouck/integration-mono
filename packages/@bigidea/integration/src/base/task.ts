@@ -59,6 +59,11 @@ function validateTaskProps({ name, trigger }: DeployTaskProps) {
   }
 }
 
+/**
+ * Info on how you define a task
+ *
+ * @param options
+ */
 export function defineTask(options: DefineTaskOptions) {
   const { run, ...rest } = options;
   validateTaskProps(rest);
