@@ -61,11 +61,16 @@ const config = {
             type: "doc",
             docId: "intro",
             position: "left",
-            label: "Tutorial",
+            label: "Tutorials",
           },
-          { to: "/blog", label: "Blog", position: "left" },
           {
-            href: "https://github.com/facebook/docusaurus",
+            type: "doc",
+            docId: "api/index",
+            position: "left",
+            label: "API",
+          },
+          {
+            href: "https://github.com/ebouck/integration-mono",
             label: "GitHub",
             position: "right",
           },
@@ -80,6 +85,10 @@ const config = {
               {
                 label: "Tutorial",
                 to: "/docs/intro",
+              },
+              {
+                label: "API",
+                to: "/docs/api",
               },
             ],
           },
@@ -103,13 +112,13 @@ const config = {
           {
             title: "More",
             items: [
-              {
-                label: "Blog",
-                to: "/blog",
-              },
+              // {
+              //   label: "Blog",
+              //   to: "/blog",
+              // },
               {
                 label: "GitHub",
-                href: "https://github.com/facebook/docusaurus",
+                href: "https://github.com/ebouck/integration-mono",
               },
             ],
           },
