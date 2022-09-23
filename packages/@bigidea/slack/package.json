@@ -16,6 +16,7 @@
     "@microsoft/api-extractor": "^7.31.2",
     "@types/react": "^17.0.37",
     "@types/react-dom": "^17.0.11",
+    "api-extractor-config": "*",
     "eslint": "^7.32.0",
     "eslint-config-custom": "*",
     "react": "^18.2.0",
