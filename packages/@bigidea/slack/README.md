@@ -2,6 +2,12 @@
 
 ## Examples
 
+### Import
+
+```typescript
+import { Slack } from '@bigidea/slack';
+```
+
 ### Create an auth
 
 ```typescript
