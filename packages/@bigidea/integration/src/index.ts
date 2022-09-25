@@ -12,7 +12,7 @@ import {
 } from "./base/http";
 import { defineSecret, SecretData } from "./base/secret";
 import { defineSubscription, SubscribeArgsProps } from "./base/subscription";
-import { defineTask } from "./base/task";
+import { defineTask, DefineTaskOptions } from "./base/task";
 import { defineVariable, getVariableData, VariableData } from "./base/variable";
 import { defineWebhook, getWebhookData } from "./base/webhook";
 import {
@@ -66,6 +66,7 @@ export {
 export type {
   AuthData,
   AuthProps,
+  DefineTaskOptions,
   VariableData,
   SecretData,
   BaseConnectorOptions,
