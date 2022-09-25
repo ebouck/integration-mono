@@ -20,6 +20,32 @@ import confirmationDialog from "./elements/objects/confirmationDialog";
 
 /**
  * The Slack connector docs
+ *
+ * @example Import
+ * ```typescript
+ * import { Slack } from '@bigidea/slack';
+ * ```
+ *
+ * @example Create an auth
+ *
+ * ```typescript
+ * const slackAuth = Slack.defineAuth({ name: 'slack' })
+ * ```
+ *
+ * @example Use in a task
+ *
+ * ```typescript
+ * defineTask({
+ *   name: 'helloSlack',
+ *   auths: {
+ *     slack: slackAuth,
+ *   },
+ *   run: async ({ auths }) => {
+ *     const slack = new Slack({ auth: auths.slack });
+ *     await slack.postMessage({ channel: '#general', text: 'Hello Slack'})
+ *   }
+ * })
+ * ```
  */
 export class Slack extends RestConnector {
   /**
@@ -74,7 +100,7 @@ export class Slack extends RestConnector {
   }
 
   /**
-   * Sends a message to a channel
+   * Sends a message to a channel changed
    *
    * @example Basic hello world as text
    *
