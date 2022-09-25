@@ -12,11 +12,13 @@
     "build:docs": "turbo run build:docs",
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint",
+    "prettier:check": "turbo run prettier:check",
     "test": "turbo run test",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "docs:extract": "turbo run docs:extract",
     "docs:document": "mkdir -p temp && api-documenter markdown --input-folder temp/@bigidea --output-folder apps/docs/docs/api",
-    "docs:generate": "npm run docs:extract && npm run docs:document && npm run build:docs"
+    "docs:generate": "npm run docs:extract && npm run docs:document && npm run build:docs",
+    "changeset:publish": "changeset publish"
   },
   "devDependencies": {
     "@microsoft/api-documenter": "^7.19.14",
