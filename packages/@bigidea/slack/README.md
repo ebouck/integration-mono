@@ -1,5 +1,7 @@
 # Slack Connector
 
+The Slack Connector for Big Idea Integration
+
 ## Examples
 
 ### Import
