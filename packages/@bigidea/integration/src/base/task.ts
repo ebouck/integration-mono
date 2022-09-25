@@ -62,6 +62,18 @@ function validateTaskProps({ name, trigger }: DeployTaskProps) {
 /**
  * Info on how you define a task
  *
+ * @example Hello World
+ *
+ * ```typescript
+ * defineTask({
+ *   name: "hello world",
+ *   description: "Prints hello world to the console",
+ *   run: async () => {
+ *     console.log('Hello world');
+ *   }
+ * })
+ * ```
+ *
  * @param options
  */
 export function defineTask(options: DefineTaskOptions) {
