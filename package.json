@@ -9,12 +9,13 @@
   ],
   "scripts": {
     "build": "turbo run build",
+    "build:docs": "npm run docs:document && turbo run build:docs",
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint",
     "test": "turbo run test",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "docs:extract": "turbo run docs:extract",
-    "docs:document": "api-documenter markdown --input-folder temp/@bigidea --output-folder apps/docs/docs/api",
+    "docs:document": "npm run docs:extract && api-documenter markdown --input-folder temp/@bigidea --output-folder apps/docs/docs/api",
     "docs:generate": "npm run build && npm run docs:extract && npm run docs:document"
   },
   "devDependencies": {

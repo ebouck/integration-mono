@@ -5,7 +5,7 @@
   "scripts": {
     "docusaurus": "docusaurus",
     "dev": "docusaurus start --port 4000",
-    "build": "docusaurus build",
+    "build:docs": "docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
@@ -15,6 +15,9 @@
     "typecheck": "tsc"
   },
   "dependencies": {
+    "@bigidea/github": "*",
+    "@bigidea/integration": "*",
+    "@bigidea/slack": "*",
     "@docusaurus/core": "2.1.0",
     "@docusaurus/preset-classic": "2.1.0",
     "@mdx-js/react": "^1.6.22",
