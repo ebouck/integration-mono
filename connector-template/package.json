@@ -5,7 +5,7 @@
     "access": "public"
   },
   "scripts": {
-    "lint": "eslint *.ts*",
+    "lint": "eslint src/**.ts",
     "build": "tsup src/index.ts --dts",
     "docs:extract": "api-extractor run --local --verbose"
   },
@@ -14,6 +14,7 @@
   },
   "devDependencies": {
     "@microsoft/api-extractor": "^7.31.2",
+    "@typescript-eslint/parser": "^5.38.0",
     "api-extractor-config": "*",
     "eslint": "^7.32.0",
     "eslint-config-custom": "*",
