@@ -15,7 +15,7 @@
     "test": "turbo run test",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "docs:extract": "turbo run docs:extract",
-    "docs:document": "api-documenter markdown --input-folder temp/@bigidea --output-folder apps/docs/docs/api",
+    "docs:document": "mkdir -p temp && api-documenter markdown --input-folder temp/@bigidea --output-folder apps/docs/docs/api",
     "docs:generate": "npm run docs:extract && npm run docs:document && npm run build:docs"
   },
   "devDependencies": {
