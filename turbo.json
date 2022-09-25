@@ -13,12 +13,8 @@
       "dependsOn": ["build", "^docs:extract"],
       "outputs": ["temp/@bigidea/*.api.json"]
     },
-    "docs:document": {
-      "dependsOn": ["docs:extract", "^docs:document"],
-      "outputs": ["apps/docs/docs/api/*"]
-    },
     "build:docs": {
-      "dependsOn": ["docs:document"]
+      "dependsOn": []
     },
     "lint": {
       "outputs": []
