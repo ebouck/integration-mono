@@ -6,6 +6,7 @@
   },
   "scripts": {
     "lint": "eslint src/**.ts",
+    "prettier:check": "prettier --check src",
     "build": "tsup src/index.ts --dts",
     "docs:extract": "api-extractor run --local --verbose"
   },

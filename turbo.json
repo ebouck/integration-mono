@@ -19,6 +19,9 @@
     "lint": {
       "outputs": []
     },
+    "prettier:check": {
+      "outputs": []
+    },
     "dev": {
       "cache": false
     }
