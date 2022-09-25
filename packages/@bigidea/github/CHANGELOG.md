@@ -1,5 +1,11 @@
 # @bigidea/github
 
+## 0.1.2
+
+### Patch Changes
+
+- Updated README with examples
+
 ## 0.1.1
 
 ### Patch Changes

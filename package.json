@@ -18,6 +18,8 @@
     "docs:extract": "turbo run docs:extract",
     "docs:document": "mkdir -p temp && api-documenter markdown --input-folder temp/@bigidea --output-folder apps/docs/docs/api",
     "docs:generate": "npm run docs:extract && npm run docs:document && npm run build:docs",
+    "changeset": "changeset",
+    "changeset:version": "changeset version",
     "changeset:publish": "changeset publish"
   },
   "devDependencies": {
