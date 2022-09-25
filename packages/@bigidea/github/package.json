@@ -1,6 +1,9 @@
 {
   "name": "@bigidea/github",
   "version": "0.0.0",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "lint": "eslint *.ts*",
     "build": "tsup src/index.ts --dts",
