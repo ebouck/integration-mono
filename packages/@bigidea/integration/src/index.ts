@@ -13,6 +13,7 @@ import {
 import { defineSecret, SecretData } from "./base/secret";
 import { defineSubscription, SubscribeArgsProps } from "./base/subscription";
 import { defineTask, DefineTaskOptions } from "./base/task";
+import { RunFunc, RunFuncProps } from "./run";
 import { defineVariable, getVariableData, VariableData } from "./base/variable";
 import { defineWebhook, getWebhookData } from "./base/webhook";
 import {
@@ -79,4 +80,6 @@ export type {
   PollingData,
   SubscribeArgsProps,
   WebhookDeliveryData,
+  RunFunc,
+  RunFuncProps,
 };
