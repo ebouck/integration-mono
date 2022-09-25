@@ -65,14 +65,20 @@ import WebhookEvent from "./webhooks/WebhookEvent";
 /**
  * Connector to the Github API
  *
- * @example
+ * @example Import
  * ```typescript
  * import { Github } from "@bigidea/github"
+ * ```
  *
- * // List all github repos
+ * @example Define an auth
+ * ```typescript
  * const githubAuth = Github.defineAuth({ name: "github" });
- * const github = new Github({ auth: githubAuth});
- * await github.repositories.listRepos();
+ * ```
+ *
+ * @example List all github repos
+ * ```typescript
+ * const github = new Github({ auth: githubAuth });
+ * await github.listRepos();
  * ```
  */
 export class Github extends RestConnector {
