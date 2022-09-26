@@ -4,7 +4,7 @@ This is a prototype of a new approach to building integrations using an old and 
 
 ## Getting Started
 
-Create your project for our template.
+Create your project from our template.
 
 ```shell
 npx @bigidea/cli create my-integrations
@@ -27,3 +27,6 @@ This will direct your browser to your [dashboard](https://integration.bigidea.io
 
 You can find the latest documentation on our [website](https://docs.bigidea.io). 
 
+## Contributing
+
+[Contributing Guidelines]('./CONTRIBUTING.md)

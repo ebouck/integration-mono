@@ -1,1 +1,0 @@
-# Step 3 - Authorize an App
