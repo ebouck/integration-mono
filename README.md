@@ -27,3 +27,6 @@ This will direct your browser to your [dashboard](https://integration.bigidea.io
 
 You can find the latest documentation on our [website](https://docs.bigidea.io). 
 
+## Contributing
+
+[Contributing Guidelines]('./CONTRIBUTING.md)
