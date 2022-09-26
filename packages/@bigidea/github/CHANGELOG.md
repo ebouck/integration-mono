@@ -1,5 +1,11 @@
 # @bigidea/github
 
+## 0.1.3
+
+### Patch Changes
+
+- Added a main and a typings to package.json
+
 ## 0.1.2
 
 ### Patch Changes
