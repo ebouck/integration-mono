@@ -19,7 +19,7 @@ import video from "./elements/blocks/video";
 import confirmationDialog from "./elements/objects/confirmationDialog";
 
 /**
- * The Slack connector docs
+ * Connector to the Slack API
  *
  * @example Import
  * ```typescript

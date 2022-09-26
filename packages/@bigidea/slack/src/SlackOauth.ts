@@ -6,7 +6,7 @@ import {
 } from "@bigidea/integration";
 
 /**
- * Slack Oauth2 Connector
+ * Connector to the Slack Oauth2 API
  */
 export class SlackOauth extends OauthConnector {
   constructor(props: OauthConnectorProps) {
