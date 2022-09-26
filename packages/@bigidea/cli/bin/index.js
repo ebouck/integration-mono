@@ -28,9 +28,9 @@ program
 
 program
   .command("create <repo>")
-  .description("Create a new integration project directory from template")
+  .description("Create a new integration repo from template and clone it")
   .action(async (repo) => {
-    console.log("ready to create repo", repo);
+    console.log("Creating and cloning repo", repo);
 
     try {
       await execa("gh", [
@@ -41,6 +41,16 @@ program
         "--private",
         "--clone",
       ]);
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+
+    console.log(`Installing packages to ${repo}`);
+    try {
+      await execa("npm", ["install"], {
+        cwd: repo,
+      }).stdout.pipe(process.stdout);
     } catch (error) {
       console.log(error);
       throw error;
