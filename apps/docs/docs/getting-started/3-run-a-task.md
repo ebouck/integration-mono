@@ -12,14 +12,17 @@ There are currently two environments, `dev` and `prod`. Click on the `dev` envir
 
 ## See the list of tasks
 
-
 Selecting the tasks menu lets you view all of the deployed tasks. These correspond with the tasks in `my-integration`.
 
 ![Listing tasks](./img/run-a-task-1.png)
 
+## Run the task
+
 To run one, click on the `Trigger` link.
 
 ![How to run a task](./img/run-a-task-2.png)
+
+## Find the run
 
 You can view the output by clicking on `Runs`.
 
@@ -27,8 +30,10 @@ You can view the output by clicking on `Runs`.
 
 And then clicking on the latest run.
 
-![Displaty a run](./img/run-a-task-4.png)
+![Display a run](./img/run-a-task-4.png)
+
+## Display run details
 
 You should see something similar to this.
 
-![Displaty run details](./img/run-a-task-5.png)
+![Display run details](./img/run-a-task-5.png)
