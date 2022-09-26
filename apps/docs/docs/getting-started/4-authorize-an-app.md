@@ -82,7 +82,7 @@ defineTask({
 });
 ```
 
-And finally we're using that connector instance to post a message to the `#general` channel in Slack.
+And finally we're using that connector instance to post a message to the `#general` channel in Slack. You should select an appropriate channel so you don't irritate or confuse your co-workers! 🙂
 
 ```typescript
 defineTask({
@@ -102,9 +102,7 @@ defineTask({
 
 ## Enable an Auth
 
-Let's go back to the dashboard: https://integration.bigidea.io/prototype
-
-And then click on Auths and on the newly created `slack` auth
+Let's go back to the dashboard: https://integration.bigidea.io/prototype and click on Auths and on the newly created `slack` auth.
 
 ![asdf](./img/authorize-an-app-0.png)
 
