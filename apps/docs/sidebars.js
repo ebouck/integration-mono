@@ -29,6 +29,7 @@ const sidebars = {
       label: "Getting Started",
       items: [
         "getting-started/set-up-dev-env",
+        "getting-started/understand-the-repo",
         "getting-started/run-a-task",
         "getting-started/authorize-an-app",
         "getting-started/trigger-a-webhook",
