@@ -3,7 +3,7 @@
 // import { URL } from "url";
 
 require("dotenv").config();
-const { program } = require("commander");
+const { program, Option } = require("commander");
 const nodemon = require("nodemon");
 const Pusher = require("pusher-js");
 const pako = require("pako");
@@ -19,7 +19,10 @@ const subscribe = require("../src/subscribe");
 const unsubscribe = require("../src/unsubscribe");
 const execa = require("execa");
 const opn = require("better-opn");
-const http = require("http");
+const http = require("node:http");
+const parseCode = require("../src/util/parseCode");
+const fetch = require("node-fetch");
+const fs = require("fs");
 
 program
   .name("integration")
@@ -28,9 +31,9 @@ program
 
 program
   .command("create <repo>")
-  .description("Create a new integration project directory from template")
+  .description("Create a new integration repo from template and clone it")
   .action(async (repo) => {
-    console.log("ready to create repo", repo);
+    console.log("Creating and cloning repo", repo);
 
     try {
       await execa("gh", [
@@ -45,6 +48,16 @@ program
       console.log(error);
       throw error;
     }
+
+    console.log(`Installing packages to ${repo}`);
+    try {
+      await execa("npm", ["install"], {
+        cwd: repo,
+      }).stdout.pipe(process.stdout);
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
   });
 
 program
@@ -52,15 +65,75 @@ program
   .description(
     "Login to get credentials, which are stored in .env in project root"
   )
-  .action(async () => {
-    await opn(
-      "https://integration.bigidea.io/prototype/integrations/envs/dev/setup"
-    );
+  .addOption(new Option("-d, --dev").hideHelp())
+  .action(async (options) => {
+    const baseUrl = options.dev
+      ? "http://127.0.0.1:3000"
+      : "https://integration.bigidea.io";
 
-    const server = http.createServer();
-    const address = await listen(server, 0, "127.0.0.1");
-    const { port } = new URL(address);
-    url.searchParams.set("next", `http://localhost:${port}`);
+    const callback = async (req, res) => {
+      res.statusCode = 302;
+
+      try {
+        const code = parseCode(req.url);
+
+        const response = await fetch(`${baseUrl}/api/v1/cli-login`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ code }),
+        });
+
+        const text = await response.text();
+
+        if (response.status === 200) {
+          const json = JSON.parse(text);
+          const { ENV_NAME, BASE_URL, API_KEY } = json;
+
+          try {
+            fs.writeFileSync(
+              ".env",
+              `ENV_NAME=${ENV_NAME}
+BASE_URL=${BASE_URL}
+API_KEY=${API_KEY}
+`
+            );
+            res.setHeader(
+              "location",
+              `${BASE_URL}/prototype/cli-login/success`
+            );
+            console.log("Login successful, wrote .env file");
+          } catch (error) {
+            res.setHeader(
+              "location",
+              `${BASE_URL}/prototype/cli-login/failure`
+            );
+            console.log("Failed to write .env file", error);
+          }
+        } else {
+          res.setHeader("location", `${baseUrl}/prototype/cli-login/failure`);
+          console.log("Login failed");
+        }
+      } catch (error) {
+        res.setHeader("location", `${baseUrl}/prototype/cli-login/failure`);
+        console.log("Login failed");
+      }
+
+      res.end();
+
+      process.exit(0);
+    };
+
+    const server = http.createServer(callback);
+
+    await server.listen(0);
+
+    const localPort = server.address().port;
+
+    console.log("Opening your browser to allow you to login");
+
+    await opn(`${baseUrl}/prototype/cli-login/${localPort}/`);
   });
 
 program

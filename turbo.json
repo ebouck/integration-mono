@@ -10,6 +10,10 @@
       "dependsOn": ["^test"],
       "outputs": []
     },
+    "test:watch": {
+      "dependsOn": ["^test:watch"],
+      "outputs": []
+    },
     "docs:extract": {
       "cache": false,
       "dependsOn": ["build", "^docs:extract"],
