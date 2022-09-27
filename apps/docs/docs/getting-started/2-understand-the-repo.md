@@ -29,7 +29,7 @@ Since `helloWorld` is the only one linked, it will be the only task deployed for
 
 ## Look at `src/tasks/helloWorld`
 
-If you examine the code, you can see it simply prints out Hello World! to the console. Not much of an integration, but it's a start to help you understand the platform.
+If you examine the code, you can see it simply prints out Hello World! to the console. 
 
 ```typescript
 import { defineTask } from "@bigidea/integration";
@@ -41,3 +41,5 @@ defineTask({
   },
 });
 ```
+
+Not much of an integration, but it's a start to help you understand the platform.

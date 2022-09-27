@@ -12,7 +12,7 @@ There are currently two environments, `dev` and `prod`. Click on the `dev` envir
 
 ## See the list of tasks
 
-Selecting the tasks menu lets you view all of the deployed tasks. These correspond with the tasks in `my-integration`.
+Selecting the tasks menu lets you view all of the deployed tasks. These correspond with the tasks in `my-integrations`.
 
 ![Listing tasks](./img/run-a-task-1.png)
 
