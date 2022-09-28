@@ -100,7 +100,7 @@ export class Slack extends RestConnector {
   }
 
   /**
-   * Sends a message to a channel changed
+   * Sends a message to a channel
    *
    * @example Basic hello world as text
    *
@@ -109,8 +109,6 @@ export class Slack extends RestConnector {
    * ```
    *
    * @example Use blocks to structure display
-   *
-   * This one uses blocks to generate a visually appealing display of a lot of content.
    *
    * ```typescript
    * slack.postMessage({
