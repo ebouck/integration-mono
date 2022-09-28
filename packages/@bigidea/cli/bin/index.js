@@ -33,6 +33,23 @@ program
   .command("create <repo>")
   .description("Create a new integration repo from template and clone it")
   .action(async (repo) => {
+    try {
+      await execa("which", ["gh"]);
+    } catch (error) {
+      console.error("gh not found");
+      console.log("");
+      console.log(
+        "You must have gh (the GitHub command line interface) installed to run the create command"
+      );
+      console.log("");
+      console.log("Installation instructions: https://cli.github.com/");
+      console.log("");
+      console.log(
+        "If you cannot or do not want to install, follow the manual setup instructions at https://docs.bigidea.io/docs/getting-started/set-up-dev-env"
+      );
+      return;
+    }
+
     console.log("Creating and cloning repo", repo);
 
     try {
