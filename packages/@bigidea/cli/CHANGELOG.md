@@ -1,5 +1,11 @@
 # @bigidea/cli
 
+## 0.2.2
+
+### Patch Changes
+
+- Clearer error messages when attempting to create with an existing repo name or directory name
+
 ## 0.2.1
 
 ### Patch Changes
