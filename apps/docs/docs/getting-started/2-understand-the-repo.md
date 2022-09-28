@@ -43,3 +43,19 @@ defineTask({
 ```
 
 Not much of an integration, but it's a start to help you understand the platform.
+
+## Update the message
+
+For fun, let's update the message to something new.
+
+```typescript
+import { defineTask } from "@bigidea/integration";
+
+defineTask({
+  name: "helloWorld",
+  run: async () => {
+    // highlight-next-line
+    console.log("Hello World! Nice to meet you!");
+  },
+});
+```

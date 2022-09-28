@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 
 ## Getting Started
 
-### Install
+### Create and Clone a Repo
 
 <Tabs>
   <TabItem value="auto" label="Automated" default>
@@ -19,7 +19,7 @@ import TabItem from '@theme/TabItem';
 
 * [GitHub CLI](https://cli.github.com/)
 
-#### Install
+#### On the command line
 
 This command will create a new repo in your GitHub account from our template and clone it onto your local machine. We'll create one called `my-integrations` and refer to it as such throughout this tutorial, but feel free to use whatever name you like.
 
@@ -30,7 +30,7 @@ npx @bigidea/cli create my-integrations
   </TabItem>
   <TabItem value="manual" label="Manual">
 
-#### Create your project
+#### Create your repo
 
 You need to create a GitHub repo that will contain your integrations. You can start one by using our template. 
 
@@ -61,15 +61,17 @@ Use npm to install the project packages
 npm install
 ```
 
-#### Create a .env file
-
-You need to store a dev api key to connect your local environment to your online dev environment. Create a file named .env at the root level of your new project and set its contents to the [values you find on this page](https://integration.bigidea.io/prototype/integrations/envs/dev/setup).
 
   </TabItem>
 </Tabs>
 
 
-### Sign Up or Sign In
+### Authenticate 
+
+<Tabs>
+  <TabItem value="auto" label="Automated" default>
+
+#### Sign Up or Sign In
 
 Change to the directory and log in to the app using the command line.
 
@@ -77,7 +79,19 @@ Change to the directory and log in to the app using the command line.
 npm run login
 ```
 
-### Run Dev Server
+  </TabItem>
+  <TabItem value="manual" label="Manual" default>
+
+#### Create a .env file
+
+You need to store a dev api key to connect your local environment to your online dev environment. Create a file named `.env` at the root level of your new project and set its contents to the [values you find on this page](https://integration.bigidea.io/prototype/integrations/envs/dev/setup).
+
+
+  </TabItem>
+</Tabs>
+
+
+### Run the Dev Server
 
 Start the dev server.
 ```shell

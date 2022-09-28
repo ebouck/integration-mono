@@ -22,18 +22,41 @@ To run one, click on the `Trigger` link.
 
 ![How to run a task](./img/run-a-task-2.png)
 
-## Find the run
+## Check the output
 
-You can view the output by clicking on `Runs`.
+You can view the log of the task run in your console.
 
-![Listing runs](./img/run-a-task-3.png)
+```shell
+[LOG]: in handleRunLocal
+[LOG]: props {
+  "compressedPayloadB64": "eJyrVipJLM72S8xNVbJSykjNyckPzy/KSVHSUUpJLElUsqqurQUA3SoMRw=="
+}
+[LOG]: payload {
+  "taskName": "helloWorld",
+  "data": {}
+}
+[LOG]: Event: {
+  "action": "run",
+  "taskName": "helloWorld",
+  "data": {}
+}
+[LOG]: Context: undefined
+[LOG]: in baseRequest XXX
+[DEBUG]: baseRequest url https://integration.bigidea.io/api/v1/envs/dev/tasks/helloWorld/data
+[DEBUG]: baseRequest options {
+  "method": "GET",
+  "headers": {
+    "Authorization": "apiKey *****abe",
+    "Content-Type": "application/json"
+  }
+}
+[DEBUG]: about to return from baseRequest
+[LOG]: About to run task helloWorld
+[LOG]: taskIndex helloWorld
+[LOG]: about to make the fn call
+# highlight-next-line
+[LOG]: Hello World! Nice to meet you!
+[LOG]: Uploaded run result
+```
 
-And then clicking on the latest run.
-
-![Display a run](./img/run-a-task-4.png)
-
-## Display run details
-
-You should see something similar to this.
-
-![Display run details](./img/run-a-task-5.png)
+During development, your tasks are run locally to give you a really tight feedback loop.

@@ -50,6 +50,27 @@ program
       return;
     }
 
+    try {
+      await execa("gh", ["repo", "view", repo]);
+      console.log(
+        `Repo ${repo} already exists. Delete or choose another name to continue.`
+      );
+      return;
+    } catch (error) {
+      // continue
+    }
+
+    try {
+      if (fs.existsSync(repo)) {
+        console.log(
+          `Directory or file ${repo} already exists. Delete or choose another name to continue.`
+        );
+        return;
+      }
+    } catch (error) {
+      throw error;
+    }
+
     console.log("Creating and cloning repo", repo);
 
     try {
