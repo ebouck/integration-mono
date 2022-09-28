@@ -1,5 +1,11 @@
 # @bigidea/cli
 
+## 0.2.1
+
+### Patch Changes
+
+- Check for `gh` and show actionable error message if it's not installed.
+
 ## 0.2.0
 
 ### Minor Changes
