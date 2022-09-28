@@ -2,6 +2,11 @@
 
 This is a prototype of a new approach to building integrations using an old and reliable technique: write some code!
 
+## System Requirements
+
+* A [GitHub](https://github.com/) account
+* [Node](https://nodejs.org/en/) v14.20, v16.17, or greater (check with `node --version`)
+
 ## Getting Started
 
 Create your project from our template.
