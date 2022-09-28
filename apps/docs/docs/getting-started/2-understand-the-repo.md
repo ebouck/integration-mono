@@ -9,7 +9,6 @@ Open up the `my-integrations` repo with your IDE and familiarize yourself with t
     ├── src
     │   ├── index.js
     │   └── tasks
-    │       ├── githubPushToSlack.js
     │       ├── helloToSlack.js
     │       ├── helloWorld.js
     │       ├── webhookToSlack.js
