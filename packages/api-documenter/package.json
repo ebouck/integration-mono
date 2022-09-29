@@ -11,6 +11,8 @@
   "license": "MIT",
   "scripts": {
     "build": "mkdir -p ../../common/reviews/api; heft build --clean",
+    "prettier:check": "prettier --check src",
+    "prettier:write": "prettier --write src",
     "_phase:build": "heft build --clean",
     "_phase:test": "heft test --no-build"
   },
