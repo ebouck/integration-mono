@@ -375,7 +375,7 @@ export class MarkdownDocumenter {
         const extendsParagraph: DocParagraph = new DocParagraph(
           { configuration },
           [
-            new DocEmphasisSpan({ configuration, bold: true }, [
+            new DocEmphasisSpan({ configuration, bold: false }, [
               new DocPlainText({ configuration, text: "Extends: " }),
             ]),
           ]
