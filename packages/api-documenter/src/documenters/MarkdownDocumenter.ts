@@ -861,7 +861,12 @@ export class MarkdownDocumenter {
       headerTitles: ["Property", "Modifiers", "Type", "Description"],
     });
 
-    const propertiesTable: DocTable = new DocTable({
+    const requiredPropertiesTable: DocTable = new DocTable({
+      configuration,
+      headerTitles: ["Property", "Modifiers", "Type", "Description"],
+    });
+
+    const optionalPropertiesTable: DocTable = new DocTable({
       configuration,
       headerTitles: ["Property", "Modifiers", "Type", "Description"],
     });
@@ -898,8 +903,17 @@ export class MarkdownDocumenter {
                 this._createDescriptionCell(apiMember, isInherited),
               ])
             );
+          } else if (!(apiMember as ApiOptionalMixin).isOptional) {
+            requiredPropertiesTable.addRow(
+              new DocTableRow({ configuration }, [
+                this._createTitleCell(apiMember),
+                this._createModifiersCell(apiMember),
+                this._createPropertyTypeCell(apiMember),
+                this._createDescriptionCell(apiMember, isInherited),
+              ])
+            );
           } else {
-            propertiesTable.addRow(
+            optionalPropertiesTable.addRow(
               new DocTableRow({ configuration }, [
                 this._createTitleCell(apiMember),
                 this._createModifiersCell(apiMember),
@@ -920,9 +934,18 @@ export class MarkdownDocumenter {
       output.appendNode(eventsTable);
     }
 
-    if (propertiesTable.rows.length > 0) {
-      output.appendNode(new DocHeading({ configuration, title: "Properties" }));
-      output.appendNode(propertiesTable);
+    if (requiredPropertiesTable.rows.length > 0) {
+      output.appendNode(
+        new DocHeading({ configuration, title: "Required Properties" })
+      );
+      output.appendNode(requiredPropertiesTable);
+    }
+
+    if (optionalPropertiesTable.rows.length > 0) {
+      output.appendNode(
+        new DocHeading({ configuration, title: "Optional Properties" })
+      );
+      output.appendNode(optionalPropertiesTable);
     }
 
     if (methodsTable.rows.length > 0) {
@@ -952,7 +975,7 @@ export class MarkdownDocumenter {
       if (apiParameter.isOptional) {
         parameterDescription.appendNodesInParagraph([
           new DocEmphasisSpan({ configuration, italic: true }, [
-            new DocPlainText({ configuration, text: "(Optional)" }),
+            new DocPlainText({ configuration, text: "(Optional1)" }),
           ]),
           new DocPlainText({ configuration, text: " " }),
         ]);
@@ -1125,10 +1148,10 @@ export class MarkdownDocumenter {
       }
     }
 
-    if (ApiOptionalMixin.isBaseClassOf(apiItem) && apiItem.isOptional) {
+    if (ApiOptionalMixin.isBaseClassOf(apiItem) && !apiItem.isOptional) {
       section.appendNodesInParagraph([
-        new DocEmphasisSpan({ configuration, italic: true }, [
-          new DocPlainText({ configuration, text: "(Optional)" }),
+        new DocEmphasisSpan({ configuration, bold: true }, [
+          new DocPlainText({ configuration, text: "(Required)" }),
         ]),
         new DocPlainText({ configuration, text: " " }),
       ]);
