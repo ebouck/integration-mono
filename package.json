@@ -13,27 +13,27 @@
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint",
     "prettier:check": "turbo run prettier:check",
+    "prettier:write": "turbo run prettier:write",
     "test": "turbo run test",
     "test:watch": "turbo run test:watch",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "docs:extract": "turbo run docs:extract",
     "docs:document": "mkdir -p temp/@bigidea; api-documenter markdown --input-folder temp/@bigidea --output-folder apps/docs/docs/api",
-    "docs:generate": "npm run docs:extract && npm run docs:document && npm run build:docs",
-    "docs:generate:dev": "npm run docs:extract; npm run docs:document",
+    "docs:generate": "pnpm run docs:extract && pnpm run docs:document && pnpm run build:docs",
+    "docs:generate:dev": "pnpm run docs:extract; pnpm run docs:document",
     "changeset": "changeset",
     "changeset:version": "changeset version",
     "changeset:publish": "changeset publish"
   },
   "devDependencies": {
-    "@microsoft/api-documenter": "^7.19.14",
-    "eslint-config-custom": "*",
+    "@microsoft/api-documenter": "workspace:*",
+    "eslint-config-custom": "workspace:*",
     "prettier": "latest",
     "turbo": "latest"
   },
   "engines": {
     "node": ">=14.0.0"
   },
-  "packageManager": "npm@8.15.0",
   "dependencies": {
     "@changesets/cli": "^2.24.4"
   }

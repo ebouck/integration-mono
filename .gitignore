@@ -5,6 +5,9 @@ node_modules
 .pnp
 .pnp.js
 
+# heft
+.heft
+
 # testing
 coverage
 
@@ -39,7 +42,11 @@ yarn-error.log*
 # Packages
 packages/*/dist
 packages/@bigidea/*/dist
+packages/*/lib
 
 # API Extractor
 tsdoc-metadata.json
 temp
+
+# API Documenter output
+common

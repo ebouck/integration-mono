@@ -28,6 +28,9 @@
     "prettier:check": {
       "outputs": []
     },
+    "prettier:write": {
+      "outputs": []
+    },
     "dev": {
       "cache": false
     }
