@@ -774,7 +774,6 @@ export class MarkdownDocumenter {
         if (tsdocComment) {
           for (const block of tsdocComment.customBlocks) {
             if (block.blockTag.tagName === "@group") {
-              console.log("block.getChildNodes", block.getChildNodes());
               return block
                 .getChildNodes()
                 .map((childNode) => nodeToString(childNode))
@@ -898,6 +897,8 @@ export class MarkdownDocumenter {
     }
 
     const groupNames = Object.keys(groupedMethodTables);
+    groupNames.sort();
+
     if (groupNames.length > 0) {
       for (const name of groupNames) {
         output.appendNode(
