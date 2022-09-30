@@ -102,62 +102,119 @@ export class Github extends RestConnector {
     };
   }
 
+  /**
+   * @group Gist
+   */
   async createGist(options: CreateGistOptions): Promise<HttpProxyResponse> {
     return createGist(this)(options);
   }
 
+  /**
+   * @group Issue
+   */
   async createIssue(options: CreateIssueOptions): Promise<HttpProxyResponse> {
     return createIssue(this)(options);
   }
 
+  /**
+   * @group Issue
+   *
+   * @param options
+   */
   async updateIssue(options: UpdateIssueOptions): Promise<HttpProxyResponse> {
     return updateIssue(this)(options);
   }
 
+  /**
+   * @group Pull Request
+   *
+   * @param options
+   */
   async createPullRequest(
     options: CreatePullRequestOptions
   ): Promise<HttpProxyResponse> {
     return createPullRequest(this)(options);
   }
 
+  /**
+   * @group Pull Request
+   *
+   * @param options
+   */
   async createPullRequestComment(options: CreatePullRequestCommentOptions) {
     return createPullRequestComment(this)(options);
   }
 
+  /**
+   * @group Pull Request
+   *
+   * @param options
+   */
   async updatePullRequest(options: UpdatePullRequestOptions) {
     return updatePullRequest(this)(options);
   }
 
+  /**
+   * @group Repo
+   *
+   * @param options
+   */
   async listOrganizationRepositories(
     options: ListOrganizationRepositoriesOptions
   ) {
     return listOrganizationRepositories(this)(options);
   }
 
+  /**
+   * @group Repo
+   *
+   * @param options
+   */
   async listRepositoriesForUser(options: ListRepositoriesForUserOptions) {
     return listRepositoriesForUser(this)(options);
   }
 
+  /**
+   * @group Repo
+   *
+   * @param options
+   */
   async listRepositoriesForAuthenticatedUser(
     options: ListRepositoriesForAuthenticatedUserOptions
   ) {
     return listRepositoriesForAuthenticatedUser(this)(options);
   }
 
+  /**
+   * @group Repo
+   *
+   * @param options
+   */
   async downloadRepoArchiveTar(options: DownloadRepoArchiveTarOptions) {
     return downloadRepoArchiveTar(this)(options);
   }
 
+  /**
+   * @group Repo
+   *
+   * @param options
+   */
   async downloadRepoArchiveZip(options: DownloadRepoArchiveZipOptions) {
     return downloadRepoArchiveZip(this)(options);
   }
 
+  /**
+   * @group Webhook
+   * @param options
+   */
   async listRepositoryWebhooks(options: ListRepositoryWebhooksOptions) {
     return listRepositoryWebhooks(this)(options);
   }
 
   /**
    * Create a repository webhook
+   *
+   * @group Webhook
    *
    * Repositories can have multiple webhooks installed. Each webhook should have a unique config. Multiple webhooks can share the same config as long as those webhooks do not have any events that overlap.
    */
@@ -168,6 +225,8 @@ export class Github extends RestConnector {
   /**
    * Get a repository webhook
    *
+   * @group Webhook
+   *
    * Returns a webhook configured in a repository.
    */
   async getRepositoryWebhook(options: GetRepositoryWebhookOptions) {
@@ -177,6 +236,8 @@ export class Github extends RestConnector {
   /**
    * Update a repository webhook
    *
+   * @group Webhook
+   *
    * Updates a webhook configured in a repository. If you previously had a secret set, you must provide the same secret or set a new secret or the secret will be removed.
    */
   async updateRepositoryWebhook(options: UpdateRepositoryWebhookOptions) {
@@ -185,6 +246,8 @@ export class Github extends RestConnector {
 
   /**
    * Delete a repository webhook
+   *
+   * @group Webhook
    */
   async deleteRepositoryWebhook(options: DeleteRepositoryWebhookOptions) {
     return deleteRepositoryWebhook(this)(options);
@@ -192,6 +255,8 @@ export class Github extends RestConnector {
 
   /**
    * Ping a repository webhook
+   *
+   * @group Webhook
    *
    * This will trigger a ping event to be sent to the hook.
    */
@@ -201,6 +266,8 @@ export class Github extends RestConnector {
 
   /**
    * Test the push repository webhook
+   *
+   * @group Webhook
    *
    * This will trigger the hook with the latest push to the current repository if the hook is subscribed to push events. If the hook is not subscribed to push events, the server will respond with 204 but no test POST will be generated.
    */

@@ -743,7 +743,9 @@ export class MarkdownDocumenter {
 
     const nodeToString = (node: DocNode): string => {
       switch (node.kind) {
-        case DocNodeKind.Section:
+        case DocNodeKind.Section: {
+          return nodeToString(node.getChildNodes()[0]);
+        }
         case DocNodeKind.Paragraph: {
           return node
             .getChildNodes()
@@ -772,6 +774,7 @@ export class MarkdownDocumenter {
         if (tsdocComment) {
           for (const block of tsdocComment.customBlocks) {
             if (block.blockTag.tagName === "@group") {
+              console.log("block.getChildNodes", block.getChildNodes());
               return block
                 .getChildNodes()
                 .map((childNode) => nodeToString(childNode))
