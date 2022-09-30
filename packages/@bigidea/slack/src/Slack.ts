@@ -102,6 +102,8 @@ export class Slack extends RestConnector {
   /**
    * Sends a message to a channel
    *
+   * @group Chat
+   *
    * @example Basic hello world as text
    *
    * ```typescript

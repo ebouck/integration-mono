@@ -3,52 +3,53 @@
 
 import * as path from "path";
 import {
-  PackageName,
   FileSystem,
   NewlineKind,
+  PackageName,
 } from "@rushstack/node-core-library";
 import {
-  DocSection,
-  DocPlainText,
+  DocBlock,
+  DocCodeSpan,
+  DocComment,
+  DocFencedCode,
   DocLinkTag,
-  TSDocConfiguration,
-  StringBuilder,
+  DocNode,
+  DocNodeContainer,
   DocNodeKind,
   DocParagraph,
-  DocCodeSpan,
-  DocFencedCode,
+  DocPlainText,
+  DocSection,
   StandardTags,
-  DocBlock,
-  DocComment,
-  DocNodeContainer,
+  StringBuilder,
+  TSDocConfiguration,
 } from "@microsoft/tsdoc";
 import {
-  ApiModel,
-  ApiItem,
-  ApiEnum,
-  ApiPackage,
-  ApiItemKind,
-  ApiReleaseTagMixin,
-  ApiDocumentedItem,
   ApiClass,
-  ReleaseTag,
-  ApiStaticMixin,
-  ApiPropertyItem,
-  ApiInterface,
-  Excerpt,
-  ApiParameterListMixin,
-  ApiReturnTypeMixin,
   ApiDeclaredItem,
-  ApiNamespace,
-  ExcerptTokenKind,
-  IResolveDeclarationReferenceResult,
-  ApiTypeAlias,
-  ExcerptToken,
-  ApiOptionalMixin,
+  ApiDocumentedItem,
+  ApiEnum,
   ApiInitializerMixin,
+  ApiInterface,
+  ApiItem,
+  ApiItemKind,
+  ApiModel,
+  ApiNamespace,
+  ApiOptionalMixin,
+  ApiPackage,
+  ApiParameterListMixin,
+  ApiPropertyItem,
   ApiProtectedMixin,
   ApiReadonlyMixin,
+  ApiReleaseTagMixin,
+  ApiReturnTypeMixin,
+  ApiStaticMixin,
+  ApiTypeAlias,
+  Excerpt,
+  ExcerptToken,
+  ExcerptTokenKind,
   IFindApiItemsResult,
+  IResolveDeclarationReferenceResult,
+  ReleaseTag,
 } from "@microsoft/api-extractor-model";
 
 import { CustomDocNodes } from "../nodes/CustomDocNodeKind";
@@ -727,6 +728,61 @@ export class MarkdownDocumenter {
       headerTitles: ["Property", "Modifiers", "Type", "Description"],
     });
 
+    const groupedMethodTables: { [groupName: string]: DocTable } = {};
+
+    const getOrCreateGroupedMethodTable = (name: string) => {
+      if (!groupedMethodTables[name]) {
+        groupedMethodTables[name] = new DocTable({
+          configuration,
+          headerTitles: ["Method", "Modifiers", "Description"],
+        });
+      }
+
+      return groupedMethodTables[name];
+    };
+
+    const nodeToString = (node: DocNode): string => {
+      switch (node.kind) {
+        case DocNodeKind.Section:
+        case DocNodeKind.Paragraph: {
+          return node
+            .getChildNodes()
+            .map((childNode) => nodeToString(childNode))
+            .join(" ");
+        }
+        case DocNodeKind.BlockTag: {
+          // ignore
+          return "";
+        }
+        case DocNodeKind.SoftBreak: {
+          return " ";
+        }
+        case DocNodeKind.PlainText: {
+          const docPlainText = node as DocPlainText;
+          return docPlainText.text;
+        }
+        default:
+          throw new Error(`Unhandled node kind ${node.kind}`);
+      }
+    };
+
+    const getGroupName = (apiMember: ApiItem) => {
+      if (apiMember instanceof ApiDocumentedItem) {
+        const tsdocComment: DocComment | undefined = apiMember.tsdocComment;
+        if (tsdocComment) {
+          for (const block of tsdocComment.customBlocks) {
+            if (block.blockTag.tagName === "@group") {
+              return block
+                .getChildNodes()
+                .map((childNode) => nodeToString(childNode))
+                .join(" ")
+                .trim();
+            }
+          }
+        }
+      }
+    };
+
     const methodsTable: DocTable = new DocTable({
       configuration,
       headerTitles: ["Method", "Modifiers", "Description"],
@@ -750,13 +806,46 @@ export class MarkdownDocumenter {
           break;
         }
         case ApiItemKind.Method: {
-          methodsTable.addRow(
-            new DocTableRow({ configuration }, [
-              this._createTitleCell(apiMember),
-              this._createModifiersCell(apiMember),
-              this._createDescriptionCell(apiMember, isInherited),
-            ])
-          );
+          // console.log("apiMember name", apiMember.displayName);
+          //
+          // if (apiMember instanceof ApiDocumentedItem) {
+          //   console.log("is documented");
+          //
+          //   const tsdocComment: DocComment | undefined = apiMember.tsdocComment;
+          //
+          //   if (tsdocComment) {
+          //     for (const block of tsdocComment.customBlocks) {
+          //       console.log("kind", block.kind);
+          //       console.log("tagName", block.blockTag.tagName);
+          //       for (const node of block.content.nodes) {
+          //         console.log("nodeKind", node.kind);
+          //         console.log(`text: '${nodeToString(node).trim()}'`);
+          //       }
+          //     }
+          //   }
+          // }
+          // // console.log("apiMember", stringify(apiMember, null, 2));
+          //
+
+          const groupName = getGroupName(apiMember);
+          if (groupName) {
+            const groupTable = getOrCreateGroupedMethodTable(groupName);
+            groupTable.addRow(
+              new DocTableRow({ configuration }, [
+                this._createTitleCell(apiMember),
+                this._createModifiersCell(apiMember),
+                this._createDescriptionCell(apiMember, isInherited),
+              ])
+            );
+          } else {
+            methodsTable.addRow(
+              new DocTableRow({ configuration }, [
+                this._createTitleCell(apiMember),
+                this._createModifiersCell(apiMember),
+                this._createDescriptionCell(apiMember, isInherited),
+              ])
+            );
+          }
 
           this._writeApiItemPage(apiMember);
           break;
@@ -805,8 +894,22 @@ export class MarkdownDocumenter {
       output.appendNode(propertiesTable);
     }
 
+    const groupNames = Object.keys(groupedMethodTables);
+    if (groupNames.length > 0) {
+      for (const name of groupNames) {
+        output.appendNode(
+          new DocHeading({ configuration, title: `${name} Methods` })
+        );
+        output.appendNode(groupedMethodTables[name]);
+      }
+    }
+
     if (methodsTable.rows.length > 0) {
-      output.appendNode(new DocHeading({ configuration, title: "Methods" }));
+      const modifier = groupNames.length > 0 ? "Other " : "";
+
+      output.appendNode(
+        new DocHeading({ configuration, title: `${modifier}Methods` })
+      );
       output.appendNode(methodsTable);
     }
   }
@@ -1148,14 +1251,14 @@ export class MarkdownDocumenter {
       }
     }
 
-    if (ApiOptionalMixin.isBaseClassOf(apiItem) && !apiItem.isOptional) {
-      section.appendNodesInParagraph([
-        new DocEmphasisSpan({ configuration, bold: true }, [
-          new DocPlainText({ configuration, text: "(Required)" }),
-        ]),
-        new DocPlainText({ configuration, text: " " }),
-      ]);
-    }
+    // if (ApiOptionalMixin.isBaseClassOf(apiItem) && apiItem.isOptional) {
+    //   section.appendNodesInParagraph([
+    //     new DocEmphasisSpan({ configuration, italic: true }, [
+    //       new DocPlainText({ configuration, text: "(Optional)" }),
+    //     ]),
+    //     new DocPlainText({ configuration, text: " " }),
+    //   ]);
+    // }
 
     if (apiItem instanceof ApiDocumentedItem) {
       if (apiItem.tsdocComment !== undefined) {
