@@ -12,24 +12,6 @@ import TabItem from '@theme/TabItem';
 
 ### Create and Clone a Repo
 
-<Tabs>
-  <TabItem value="auto" label="Automated" default>
-
-#### Additional System Requirements
-
-* [GitHub CLI](https://cli.github.com/)
-
-#### On the command line
-
-This command will create a new repo in your GitHub account from our template and clone it onto your local machine. We'll create one called `my-integrations` and refer to it as such throughout this tutorial, but feel free to use whatever name you like.
-
-```shell
-npx @bigidea/cli create my-integrations
-```
-
-  </TabItem>
-  <TabItem value="manual" label="Manual">
-
 #### Create your repo
 
 You need to create a GitHub repo that will contain your integrations. You can start one by using our template. 
@@ -60,10 +42,6 @@ Use npm to install the project packages
 ```shell
 npm install
 ```
-
-
-  </TabItem>
-</Tabs>
 
 
 ### Authenticate 
