@@ -2,8 +2,17 @@ import type { GithubTypes } from "../GithubTypes";
 import { Github } from "../Github";
 
 export interface CreateGistOptions {
+  /**
+   * Description of the gist
+   */
   description?: string;
+  /**
+   * Names and content for the files that make up the gist
+   */
   files: GithubTypes.Files;
+  /**
+   * Flag indicating whether the gist is public
+   */
   isPublic?: boolean;
 }
 

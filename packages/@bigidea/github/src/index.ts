@@ -1,10 +1,14 @@
-import { Github } from "./Github";
+import {
+  Github,
+  GithubConnectorOptions,
+  GithubDefineAuthOptions,
+} from "./Github";
 import { GithubOauth } from "./GithubOauth";
 import { CreateGistOptions } from "./gists/createGist";
 import { CreateIssueOptions } from "./issues/createIssue";
 import { UpdateIssueOptions } from "./issues/updateIssue";
 import { CreatePullRequestOptions } from "./pulls/createPullRequest";
-import { CreatePullRequestCommentOptions } from "./pulls/createPullRequestComment";
+import { CreatePullRequestCommentOptions } from "./pulls/createReviewCommentForPullRequest";
 import { UpdatePullRequestOptions } from "./pulls/updatePullRequest";
 import { DownloadRepoArchiveTarOptions } from "./repositories/contents/downloadRepoArchiveTar";
 import { DownloadRepoArchiveZipOptions } from "./repositories/contents/downloadRepoArchiveZip";
@@ -39,6 +43,8 @@ import WebhookEvent from "./webhooks/WebhookEvent";
 
 export { Github, GithubOauth };
 export type {
+  GithubConnectorOptions,
+  GithubDefineAuthOptions,
   CreateGistOptions,
   CreateIssueOptions,
   UpdateIssueOptions,

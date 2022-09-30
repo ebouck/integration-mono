@@ -1,12 +1,45 @@
 import { Github } from "../Github";
 
 export interface ListRepositoriesForAuthenticatedUserOptions {
+  /**
+   * Limit results to repositories with the specified visibility.
+   *
+   * Default: all
+   */
   visibility: "all" | "public" | "private";
+  /**
+   * Array of values. Can include:
+   *
+   * owner: Repositories that are owned by the authenticated user.
+   * collaborator: Repositories that the user has been added to as a collaborator.
+   * organization_member: Repositories that the user has access to through being a member of an organization. This includes every repository on every team that the user is on.
+   *
+   * Default: owner,collaborator,organization_member
+   */
   affiliation: Array<"owner" | "collaborator" | "organization_member">;
+  /**
+   * Limit results to repositories of the specified type. Will cause a 422 error if used in the same request as visibility or affiliation.
+   *
+   * Default: all
+   */
   type: Array<"all" | "owner" | "public" | "private" | "member">;
+  /**
+   * The property to sort the results by.
+   *
+   * Default: full_name
+   */
   sort?: "created" | "updated" | "pushed" | "full_name";
+  /**
+   * The order to sort by. Default: asc when using full_name, otherwise desc.
+   */
   direction?: "asc" | "desc";
+  /**
+   * The number of results per page (max 100).
+   */
   perPage?: number;
+  /**
+   * Page number of the results to fetch.
+   */
   page?: number;
   /**
    * Only show notifications updated after the given time. This is a timestamp in ISO 8601 format: YYYY-MM-DDTHH:MM:SSZ.
@@ -18,10 +51,6 @@ export interface ListRepositoriesForAuthenticatedUserOptions {
   before?: string;
 }
 
-/**
- * Lists repositories that the authenticated user has explicit permission (:read, :write, or :admin) to access.
- * The authenticated user has explicit permission to access repositories they own, repositories where they are a collaborator, and repositories that they can access through an organization membership.
- */
 const listRepositoriesForAuthenticatedUser =
   (self: Github) =>
   async (options: ListRepositoriesForAuthenticatedUserOptions) => {
