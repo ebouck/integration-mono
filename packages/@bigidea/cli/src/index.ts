@@ -6,7 +6,6 @@ import { login } from "./commands/login";
 import { dev } from "./commands/dev";
 import { deploy } from "./commands/deploy";
 import { run } from "./commands/run";
-import { testing } from "./commands/testing";
 
 dotenv.config();
 
@@ -18,7 +17,6 @@ program
   .addCommand(dev)
   .addCommand(deploy)
   .addCommand(run)
-  .addCommand(testing);
 
 async function main() {
   await program.parseAsync();
