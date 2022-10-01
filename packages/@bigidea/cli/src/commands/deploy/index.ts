@@ -10,6 +10,6 @@ deploy
   .action(async () => {
     console.log("ready to deploy");
     await execDeploy();
-    // await unsubscribe();
-    // await subscribe();
+    await unsubscribe();
+    await subscribe();
   });
