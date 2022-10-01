@@ -1,7 +1,4 @@
 #!/usr/bin/env node
-
-// import { URL } from "url";
-
 require("dotenv").config();
 const { program, Option } = require("commander");
 const nodemon = require("nodemon");
