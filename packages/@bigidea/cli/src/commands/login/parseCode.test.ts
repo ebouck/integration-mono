@@ -1,4 +1,4 @@
-const parseCode = require("./parseCode");
+import parseCode from "./parseCode";
 
 describe("parseCode", () => {
   test("it works", () => {
@@ -7,25 +7,13 @@ describe("parseCode", () => {
     );
   });
 
-  test("it throws if no url", () => {
-    try {
-      parseCode(undefined);
-      expect(1).toEqual("Did not throw");
-    } catch (error) {
-      expect(String(error)).toMatch("missing url");
-    }
+  test("it is undefined if no url", () => {
+    expect(parseCode(undefined)).toBeUndefined();
   });
 
-  test("it throws if bad URL", () => {
+  test("it is undefined if bad URL", () => {
     expect(parseCode("/?code=1f42faab-ded3-4fde-b341-51e6a9cbb5f5")).toEqual(
       "1f42faab-ded3-4fde-b341-51e6a9cbb5f5"
     );
-
-    try {
-      parseCode("/?code=1f42faab-ded3-4fde-b341-51e");
-      expect(1).toEqual("Did not throw");
-    } catch (error) {
-      expect(String(error)).toMatch("bad url");
-    }
   });
 });

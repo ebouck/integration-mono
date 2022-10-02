@@ -1,21 +1,12 @@
-import { ServerResponse } from "http";
-import { program } from "commander";
-
-export default function parseCode(
-  url: string,
-  baseUrl: string,
-  res: ServerResponse
-) {
+export default function parseCode(url: string | undefined) {
   if (!url) {
-    throw new Error("missing url");
+    return undefined;
   }
 
   const match = url.match(/^\/\?code=([a-zA-Z0-9\-]{32,36})$/);
 
   if (!match) {
-    res.setHeader("location", `${baseUrl}/prototype/cli-login/failure`);
-    res.end();
-    program.error("Failed to find code in url");
+    return undefined;
   }
 
   return match[1];
