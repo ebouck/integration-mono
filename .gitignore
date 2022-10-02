@@ -42,7 +42,8 @@ yarn-error.log*
 # Packages
 packages/*/dist
 packages/@bigidea/*/dist
-packages/*/lib
+packages/util/*/dist
+packages/util/*/lib
 
 # API Extractor
 tsdoc-metadata.json
