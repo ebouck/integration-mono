@@ -1,5 +1,11 @@
 # @bigidea/cli
 
+## 0.3.0
+
+### Minor Changes
+
+- Converted to typescript
+
 ## 0.2.2
 
 ### Patch Changes
