@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { program } from "commander";
 import * as dotenv from "dotenv";
+import packageJson from "../package.json";
 import { create } from "./commands/create";
 import { login } from "./commands/login";
 import { dev } from "./commands/dev";
@@ -10,13 +11,14 @@ import { run } from "./commands/run";
 dotenv.config();
 
 program
+  .name("integration")
   .description("Big Idea Integration CLI")
-  .version("0.0.1")
+  .version(packageJson.version)
   .addCommand(create)
   .addCommand(login)
   .addCommand(dev)
   .addCommand(deploy)
-  .addCommand(run)
+  .addCommand(run);
 
 async function main() {
   await program.parseAsync();

@@ -6,7 +6,7 @@
   },
   "main": "dist/index.js",
   "bin": {
-    "testing": "./dist/index.js"
+    "integration": "./dist/index.js"
   },
   "scripts": {
     "dev": "nodemon --exec \"npx tsup src/index.ts --dts\" --watch src --ext ts,js",
