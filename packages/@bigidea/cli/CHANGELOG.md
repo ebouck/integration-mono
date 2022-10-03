@@ -1,5 +1,11 @@
 # @bigidea/cli
 
+## 0.4.0
+
+### Minor Changes
+
+- create command no longer requires gh and only creates a local project directory from the template.
+
 ## 0.3.0
 
 ### Minor Changes

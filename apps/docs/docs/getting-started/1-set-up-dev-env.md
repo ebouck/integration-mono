@@ -10,38 +10,33 @@ import TabItem from '@theme/TabItem';
 
 ## Getting Started
 
-### Create and Clone a Repo
+### Create your project
 
-#### Create your repo
+Use the command line to create a project directory based on our template. We'll use the name `my-integrations` and refer to it throughout this tutorial, but feel free to use any name you like.
 
-You need to create a GitHub repo that will contain your integrations. You can start one by using our template. 
+```shell
+npx @bigidea/cli create my-integrations
+```
 
-[Create from Template](https://github.com/ebouck/integration-template)
+### Install dependencies
+Change to the new project directory and use install the project packages using your favorite package manager.
 
-Then click "Use this template"
-
-![Use this template screenshot](./img/set-up-dev-env-1.png)
-
-:::caution
-
-If you do not see this button, make sure you are logged into GitHub and try again.
-
-:::
-
-And finally create the new repo by giving it a name. You'll probably want to make it private as well. We'll create one called `my-integrations` and refer to it as such throughout this tutorial, but feel free to use whatever name you like.
-
-![Create cloned repo screenshot](./img/set-up-dev-env-2.png)
-
-#### Clone your repo
-
-Create a clone of your repo as a project on your local machine.
-
-#### Install npm packages
-Use npm to install the project packages
+<Tabs>
+  <TabItem value="npm" label="npm" default>
 
 ```shell
 npm install
 ```
+
+  </TabItem>
+  <TabItem value="yarn" label="yarn" default>
+
+```shell
+yarn install
+```
+
+  </TabItem>
+</Tabs>
 
 
 ### Authenticate 
@@ -49,30 +44,45 @@ npm install
 <Tabs>
   <TabItem value="auto" label="Automated" default>
 
-#### Sign Up or Sign In
-
-Change to the directory and log in to the app using the command line.
+Sign up or sign in to the platform using the command line.
 
 ```shell
 npm run login
 ```
+
+This will create a `.env` file in your project root with your credentials.
 
   </TabItem>
   <TabItem value="manual" label="Manual" default>
 
 #### Create a .env file
 
-You need to store a dev api key to connect your local environment to your online dev environment. Create a file named `.env` at the root level of your new project and set its contents to the [values you find on this page](https://integration.bigidea.io/prototype/integrations/envs/dev/setup).
+You need to store a dev api key to connect your local environment to your online dev environment. 
+
+Create a file named `.env` at the root level of your new project and set its contents to the [values you find on this page](https://integration.bigidea.io/prototype/integrations/envs/dev/setup).
 
 
   </TabItem>
 </Tabs>
 
 
-### Run the Dev Server
+### Run the development server
 
-Start the dev server.
+<Tabs>
+  <TabItem value="npm" label="npm" default>
+
 ```shell
 npm run dev
 ```
 
+  </TabItem>
+  <TabItem value="yarn" label="yarn" default>
+
+```shell
+yarn dev
+```
+
+  </TabItem>
+</Tabs>
+
+The server will automatically deploy your integrations whenever you make changes to the source code.
