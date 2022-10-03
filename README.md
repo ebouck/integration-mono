@@ -9,24 +9,33 @@ This is a prototype of a new approach to building integrations using an old and 
 
 ## Getting Started
 
-Create your project from our template.
+### Create your project
+
+Create your project directory from our template.
 
 ```shell
 npx @bigidea/cli create my-integrations
 ```
 
+### Install dependencies
+
 Change to the directory and log in to the app using the command line.
+
 ```shell
-cd my-integrations
+npm install
+```
+
+### Authenticate
+
+```shell
 npm run login
 ```
 
-Start the dev server.
+### Run the development server
+
 ```shell
 npm run dev
 ```
-
-This will direct your browser to your [dashboard](https://integration.bigidea.io/prototype), where you can see the sample integrations.
 
 ## Documentation
 

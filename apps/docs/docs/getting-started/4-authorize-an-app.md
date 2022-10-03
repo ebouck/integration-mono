@@ -100,7 +100,7 @@ defineTask({
 });
 ```
 
-## Enable an Auth
+## Authorize an auth
 
 Let's go back to the dashboard: https://integration.bigidea.io/prototype and click on Auths and on the newly created `slack` auth.
 
