@@ -1,15 +1,18 @@
-import { Command } from "commander";
-import execDeploy from "../../shared/execDeploy";
-import unsubscribe from "../../shared/unsubscribe";
-import subscribe from "../../shared/subscribe";
+import { Command, program } from "commander";
+import deployToDev from "./deployToDev";
+import deployToProd from "./deployToProd";
 
 export const deploy = new Command("deploy");
 
 deploy
-  .description("Deploy the integrations to the dev environment")
-  .action(async () => {
-    console.log("ready to deploy");
-    await execDeploy();
-    await unsubscribe();
-    await subscribe();
+  .description("Deploy the integrations")
+  .argument("<env>", "Environment (either 'dev' or 'prod')")
+  .action(async (env) => {
+    if (env === "dev") {
+      await deployToDev();
+    } else if (env === "prod") {
+      await deployToProd();
+    } else {
+      program.error(`Unknown env: ${env}. Should be either 'dev' or 'prod'.`);
+    }
   });
