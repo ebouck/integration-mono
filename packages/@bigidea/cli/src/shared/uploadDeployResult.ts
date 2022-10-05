@@ -5,7 +5,7 @@ export default async function uploadDeployResult({
   logs,
   compiledCode,
 }: {
-  status: number;
+  status: string;
   logs: any;
   compiledCode: any;
 }) {

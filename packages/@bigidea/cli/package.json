@@ -12,6 +12,7 @@
     "dev": "nodemon --exec \"npx tsup src/index.ts --dts\" --watch src --ext ts,js",
     "lint": "eslint src/**.js",
     "prettier:check": "prettier --check src",
+    "compile": "tsc --noEmit",
     "test": "jest",
     "test:watch": "jest --watch",
     "build": "tsup src/index.ts --dts"
