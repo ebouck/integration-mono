@@ -1,7 +1,5 @@
 import { program } from "commander";
 import execa from "execa";
-import * as path from "path";
-import fse from "fs-extra";
 
 const TEMPLATE_URL = "https://github.com/ebouck/integration-template";
 
@@ -20,12 +18,5 @@ export default async function cloneFromTemplate(projectName: string) {
   } catch (error) {
     console.log(error);
     program.error("Error cloning repo");
-  }
-
-  try {
-    await fse.remove(path.join(projectName, `.git`));
-  } catch (error) {
-    console.log(error);
-    program.error("Error removing .git");
   }
 }
