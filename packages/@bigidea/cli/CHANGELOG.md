@@ -1,5 +1,11 @@
 # @bigidea/cli
 
+## 0.5.1
+
+### Patch Changes
+
+- Added some logging to login --dev mode
+
 ## 0.5.0
 
 ### Minor Changes

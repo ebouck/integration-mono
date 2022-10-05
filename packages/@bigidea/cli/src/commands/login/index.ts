@@ -9,11 +9,13 @@ login
   .description(
     "Login to get credentials, which are stored in .env in project root"
   )
-  .addOption(new Option("-d, --dev").hideHelp())
+  .addOption(new Option("--dev").hideHelp())
   .action(async (options) => {
-    const baseUrl = options.dev
-      ? "http://127.0.0.1:3000"
-      : "https://integration.bigidea.io";
+    let baseUrl = "https://integration.bigidea.io";
+    if (options.dev) {
+      console.log("In dev mode, using http://localhost:3000");
+      baseUrl = "http://localhost:3000";
+    }
 
     const localPort = await startServer(getRequestHandler(baseUrl));
 

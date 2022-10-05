@@ -4,8 +4,8 @@ This is a prototype of a new approach to building integrations using an old and 
 
 ## System Requirements
 
-* A [GitHub](https://github.com/) account
 * [Node](https://nodejs.org/en/) v14.20, v16.17, or greater (check with `node --version`)
+* [Git](https://git-scm.com/)
 
 ## Getting Started
 
@@ -35,6 +35,12 @@ npm run login
 
 ```shell
 npm run dev
+```
+
+### Deploy to production
+
+```shell
+npm run deploy
 ```
 
 ## Documentation
