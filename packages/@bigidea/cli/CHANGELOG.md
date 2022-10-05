@@ -1,5 +1,11 @@
 # @bigidea/cli
 
+## 0.5.2
+
+### Patch Changes
+
+- Don't delete the .git directory during create
+
 ## 0.5.1
 
 ### Patch Changes
