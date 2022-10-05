@@ -31,6 +31,9 @@
     "prettier:write": {
       "outputs": []
     },
+    "compile": {
+      "outputs": []
+    },
     "dev": {
       "cache": false
     }

@@ -1,5 +1,11 @@
 # @bigidea/cli
 
+## 0.5.0
+
+### Minor Changes
+
+- Deploy to dev or prod env
+
 ## 0.4.0
 
 ### Minor Changes
