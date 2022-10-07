@@ -42,12 +42,23 @@ yarn install
 ### Authenticate 
 
 <Tabs>
-  <TabItem value="auto" label="Automated" default>
+  <TabItem value="npm" label="npm" default>
 
 Sign up or sign in to the platform using the command line.
 
 ```shell
 npm run login
+```
+
+This will create a `.env` file in your project root with your credentials.
+
+  </TabItem>
+  <TabItem value="yarn" label="yarn" default>
+
+Sign up or sign in to the platform using the command line.
+
+```shell
+yarn integration login
 ```
 
 This will create a `.env` file in your project root with your credentials.
