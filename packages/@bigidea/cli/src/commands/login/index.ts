@@ -1,7 +1,9 @@
 import { Command, Option } from "commander";
+import { prompt } from "enquirer";
 import startServer from "./startServer";
 import getRequestHandler from "./getRequestHandler";
 import openBrowser from "./openBrowser";
+import getAccountType from "./getAccountType";
 
 export const login = new Command("login");
 
@@ -17,7 +19,9 @@ login
       baseUrl = "http://localhost:3000";
     }
 
+    const accountType = await getAccountType();
+
     const localPort = await startServer(getRequestHandler(baseUrl));
 
-    await openBrowser(baseUrl, localPort);
+    await openBrowser(baseUrl, accountType, localPort);
   });
