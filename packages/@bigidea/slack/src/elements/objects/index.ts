@@ -1,6 +1,5 @@
-import { PlainText } from "./plainText";
-import { MarkdownText } from "./markdownText";
-import { ConfirmationDialog } from "./confirmationDialog";
+import { Obj, ObjProps } from "./Obj";
+import { TextObj, TextObjProps } from "./TextObj";
 
-export type TextObject = PlainText | MarkdownText;
-export type SlackObject = TextObject | ConfirmationDialog;
+export { Obj, TextObj };
+export type { ObjProps, TextObjProps };

@@ -584,6 +584,63 @@ export class MarkdownDocumenter {
   ): void {
     const configuration: TSDocConfiguration = this._tsdocConfiguration;
 
+    const groupedClassTables: { [groupName: string]: DocTable } = {};
+
+    const getOrCreateGroupedClassTable = (name: string) => {
+      if (!groupedClassTables[name]) {
+        groupedClassTables[name] = new DocTable({
+          configuration,
+          headerTitles: ["Class", "Description"],
+        });
+      }
+
+      return groupedClassTables[name];
+    };
+
+    const nodeToString = (node: DocNode): string => {
+      switch (node.kind) {
+        case DocNodeKind.Section: {
+          return nodeToString(node.getChildNodes()[0]);
+        }
+        case DocNodeKind.Paragraph: {
+          return node
+            .getChildNodes()
+            .map((childNode) => nodeToString(childNode))
+            .join(" ");
+        }
+        case DocNodeKind.BlockTag: {
+          // ignore
+          return "";
+        }
+        case DocNodeKind.SoftBreak: {
+          return " ";
+        }
+        case DocNodeKind.PlainText: {
+          const docPlainText = node as DocPlainText;
+          return docPlainText.text;
+        }
+        default:
+          throw new Error(`Unhandled node kind ${node.kind}`);
+      }
+    };
+
+    const getGroupName = (apiMember: ApiItem) => {
+      if (apiMember instanceof ApiDocumentedItem) {
+        const tsdocComment: DocComment | undefined = apiMember.tsdocComment;
+        if (tsdocComment) {
+          for (const block of tsdocComment.customBlocks) {
+            if (block.blockTag.tagName === "@group") {
+              return block
+                .getChildNodes()
+                .map((childNode) => nodeToString(childNode))
+                .join(" ")
+                .trim();
+            }
+          }
+        }
+      }
+    };
+
     const classesTable: DocTable = new DocTable({
       configuration,
       headerTitles: ["Class", "Description"],
@@ -632,7 +689,14 @@ export class MarkdownDocumenter {
 
       switch (apiMember.kind) {
         case ApiItemKind.Class:
-          classesTable.addRow(row);
+          const groupName = getGroupName(apiMember);
+          if (groupName) {
+            const groupTable = getOrCreateGroupedClassTable(groupName);
+            groupTable.addRow(row);
+          } else {
+            classesTable.addRow(row);
+          }
+
           this._writeApiItemPage(apiMember);
           break;
 
@@ -668,8 +732,24 @@ export class MarkdownDocumenter {
       }
     }
 
+    const classGroupNames = Object.keys(groupedClassTables);
+    classGroupNames.sort();
+
+    if (classGroupNames.length > 0) {
+      for (const name of classGroupNames) {
+        output.appendNode(
+          new DocHeading({ configuration, title: `${name} Classes` })
+        );
+        output.appendNode(groupedClassTables[name]);
+      }
+    }
+
     if (classesTable.rows.length > 0) {
-      output.appendNode(new DocHeading({ configuration, title: "Classes" }));
+      const modifier = classGroupNames.length > 0 ? "Other " : "";
+
+      output.appendNode(
+        new DocHeading({ configuration, title: `${modifier}Classes` })
+      );
       output.appendNode(classesTable);
     }
 
