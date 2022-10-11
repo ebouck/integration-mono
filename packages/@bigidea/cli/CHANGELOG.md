@@ -1,5 +1,11 @@
 # @bigidea/cli
 
+## 0.6.2
+
+### Patch Changes
+
+- Try again to fix check for git during create command
+
 ## 0.6.1
 
 ### Patch Changes
