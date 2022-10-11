@@ -44,10 +44,10 @@ yarn install
 <Tabs>
   <TabItem value="npm" label="npm" default>
 
-Sign up or sign in to the platform using the command line.
+Sign up or sign in to the platform using the command line and choose whether to create a new account or use an existing one.
 
 ```shell
-npm run login
+npx integration login
 ```
 
 This will create a `.env` file in your project root with your credentials.
@@ -55,7 +55,7 @@ This will create a `.env` file in your project root with your credentials.
   </TabItem>
   <TabItem value="yarn" label="yarn" default>
 
-Sign up or sign in to the platform using the command line.
+Sign up or sign in to the platform using the command line and choose whether to create a new account or use an existing one.
 
 ```shell
 yarn integration login

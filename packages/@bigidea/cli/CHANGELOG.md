@@ -1,5 +1,11 @@
 # @bigidea/cli
 
+## 0.6.0
+
+### Minor Changes
+
+- Let user interactively choose whether they want to create a new account or use an existing on with the login command
+
 ## 0.5.2
 
 ### Patch Changes
