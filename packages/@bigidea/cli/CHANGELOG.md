@@ -1,5 +1,11 @@
 # @bigidea/cli
 
+## 0.6.1
+
+### Patch Changes
+
+- Fix check for git on windows
+
 ## 0.6.0
 
 ### Minor Changes
