@@ -1,19 +1,27 @@
-export interface DividerOptions {
-  /**
-   * A string acting as a unique identifier for a block. If not specified, one will be generated. Maximum length for this field is 255 characters. block_id should be unique for each message and each iteration of a message. If a message is updated, use a new block_id.
-   */
+import { Block } from "./Block";
+
+export interface DividerProps {
   blockId?: string;
 }
 
-export interface Divider extends DividerOptions {
-  type: "divider";
-}
-
-export default function divider(options: DividerOptions | undefined) {
-  const { blockId } = options || {};
-
-  return {
-    type: "divider",
-    blockId,
-  };
+/**
+ * A content divider, like an hr, to split up different blocks inside of a message. The divider block is nice and neat, requiring only a type.
+ *
+ * @group 2. Layout Block
+ *
+ * @example No properties required
+ * ```typescript
+ * new Divider();
+ * ```
+ *
+ * @example Specify a blockId
+ * ```typescript
+ * new Divider({ blockId: "my-block-id" });
+ * ```
+ *
+ */
+export class Divider extends Block {
+  constructor(props?: DividerProps) {
+    super({ type: "divider", blockId: props?.blockId });
+  }
 }

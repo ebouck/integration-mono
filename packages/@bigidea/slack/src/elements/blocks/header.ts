@@ -1,26 +1,49 @@
-import { PlainText } from "../objects/plainText";
+import { Block } from "./Block";
+import { TextObj } from "../objects";
 
-export interface HeaderOptions {
-  /**
-   * The text for the block, in the form of a plain_text text object. Maximum length for the text in this field is 150 characters.
-   */
-  text: PlainText;
-  /**
-   * A string acting as a unique identifier for a block. If not specified, one will be generated. Maximum length for this field is 255 characters. block_id should be unique for each message and each iteration of a message. If a message is updated, use a new block_id.
-   */
+export interface HeaderProps {
+  text: TextObj;
   blockId?: string;
 }
 
-export interface Header extends HeaderOptions {
-  type: "header";
-}
+/**
+ * A header is a plain-text block that displays in a larger, bold font. Use it to delineate between different groups of content in your app's surfaces.
+ *
+ * @group 2. Layout Block
+ *
+ * @example Compact
+ * ```typescript
+ * new Header("The Header");
+ * ```
+ *
+ * @example A little more detail
+ * ```typescript
+ * new Header({
+ *   text: new PlainText("The Header"),
+ * }),
+ * ```
+ */
+export class Header extends Block {
+  text: TextObj;
 
-export default function header(options: HeaderOptions) {
-  const { text, blockId } = options;
+  /**
+   * @param propsOrStr Either specify HeaderProps or use a string as short-hand for creating a plain_text TextObj
+   */
+  constructor(propsOrStr: HeaderProps | string) {
+    if (typeof propsOrStr === "string") {
+      const str = propsOrStr;
 
-  return {
-    type: "header",
-    text,
-    blockId,
-  };
+      super({ type: "header" });
+
+      this.text = new TextObj({ type: "plain_text", text: str });
+    } else {
+      const props = propsOrStr;
+      super({ type: "header", blockId: props.blockId });
+      this.text = props.text;
+    }
+  }
+
+  output() {
+    return { ...super.output(), text: this.text.output() };
+  }
 }

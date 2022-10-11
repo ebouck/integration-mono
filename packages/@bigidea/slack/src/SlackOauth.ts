@@ -7,6 +7,8 @@ import {
 
 /**
  * Connector to the Slack Oauth2 API
+ *
+ * @group 1. Connector
  */
 export class SlackOauth extends OauthConnector {
   constructor(props: OauthConnectorProps) {

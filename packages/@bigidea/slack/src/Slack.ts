@@ -6,20 +6,11 @@ import {
   defineAuth,
 } from "@bigidea/integration";
 import postMessage, { PostMessageOptions } from "./chat/postMessage";
-import section from "./elements/blocks/section";
-import plainText from "./elements/objects/plainText";
-import markdownText from "./elements/objects/markdownText";
-import actions from "./elements/blocks/actions";
-import context from "./elements/blocks/context";
-import divider from "./elements/blocks/divider";
-import file from "./elements/blocks/file";
-import header from "./elements/blocks/header";
-import image from "./elements/blocks/image";
-import video from "./elements/blocks/video";
-import confirmationDialog from "./elements/objects/confirmationDialog";
 
 /**
  * Connector to the Slack API
+ *
+ * @group 1. Connector
  *
  * @example Import
  * ```typescript
@@ -104,6 +95,18 @@ export class Slack extends RestConnector {
    *
    * @group Chat
    *
+   * @example Import
+   *
+   * ```typescript
+   * import { Slack } from "@bigidea/slack";
+   * ```
+   *
+   * @example Define an auth
+   *
+   * ```
+   * const slackAuth = Slack.defineAuth({ name: "slack" });
+   * ```
+   *
    * @example Basic hello world as text
    *
    * ```typescript
@@ -113,14 +116,16 @@ export class Slack extends RestConnector {
    * @example Use blocks to structure display
    *
    * ```typescript
+   * import { Section, SlackText } from "@bigidea/slack";
+   *
    * slack.postMessage({
    *   channel: "#general",
    *   blocks: [
-   *     Slack.blocks.section("Title section"),
-   *     Slack.blocks.section({
+   *     new Section("Title section"),
+   *     new Section({
    *       fields: [
-   *         Slack.objects.markdownText("*Data 1*\nvalue A"),
-   *         Slack.objects.markdownText("*Data 2*\nvalue B"),
+   *         new SlackText("*Data 1*\nvalue A"),
+   *         new SlackText("*Data 2*\nvalue B"),
    *       ]
    *     }),
    *   ],
@@ -133,21 +138,4 @@ export class Slack extends RestConnector {
   async postMessage(options: PostMessageOptions): Promise<HttpProxyResponse> {
     return postMessage(this)(options);
   }
-
-  static blocks = {
-    actions: actions,
-    context: context,
-    divider: divider,
-    file: file,
-    header: header,
-    image: image,
-    section: section,
-    video: video,
-  };
-
-  static objects = {
-    plainText: plainText,
-    markdownText: markdownText,
-    confirmationDialog: confirmationDialog,
-  };
 }

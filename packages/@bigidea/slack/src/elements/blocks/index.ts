@@ -1,18 +1,7 @@
-import { Actions } from "./actions";
-import { Context } from "./context";
-import { Section } from "./section";
-import { Divider } from "./divider";
-import { File } from "./file";
-import { Header } from "./header";
-import { Image } from "./image";
-import { Video } from "./video";
+import { Block } from "./Block";
+import { Divider, DividerProps } from "./Divider";
+import { Header, HeaderProps } from "./Header";
+import { Section, SectionProps } from "./Section";
 
-export type Block =
-  | Actions
-  | Context
-  | Divider
-  | File
-  | Header
-  | Image
-  | Section
-  | Video;
+export { Block, Divider, Header, Section };
+export type { DividerProps, HeaderProps, SectionProps };
