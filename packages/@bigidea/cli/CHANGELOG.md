@@ -1,5 +1,11 @@
 # @bigidea/cli
 
+## 0.6.4
+
+### Patch Changes
+
+- Do not split output of git ls-files on os-specific newline. Just use \n
+
 ## 0.6.3
 
 ### Patch Changes
