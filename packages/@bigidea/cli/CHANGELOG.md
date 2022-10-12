@@ -1,5 +1,11 @@
 # @bigidea/cli
 
+## 0.6.3
+
+### Patch Changes
+
+- Another try at fixing behavior on windows, this time for tgz creating during deploy.
+
 ## 0.6.2
 
 ### Patch Changes
